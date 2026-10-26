@@ -1,182 +1,291 @@
 <title>Sergio Masao Herrera Hueda</title>
-<meta name="description" content="Portafolio profesional de ingeniería: tres sistemas reales documentados con diagramas, stack y métricas medidas.">
+<meta name="description" content="Portafolio profesional de ingeniería: tres sistemas reales con diagramas, stack y métricas medidas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500;12..96,75..100,700;12..96,75..100,800&family=Chivo:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 
 <style>
+/* ============================================================
+   Sistema: Neon Noir (vault, Paletas-y-Temas)
+   Un solo acento. Un solo radio. Easings de tokens-de-animacion.css
+   ============================================================ */
 :root{
-  --ground:#E8EBEA; --surface:#F3F5F4;
-  --ink:#131C1B; --ink-2:#394645; --muted:#63726E;
-  --line:#C3CCCA; --line-2:#A5B1AE;
-  --accent:#0B6B66; --wash:rgba(11,107,102,.075);
-  --ok:#2F6B42; --warn:#8A5A12;
-  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
-  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --measure:66ch; --page:1140px; --pad:clamp(20px,5vw,56px);
+  --bg:#efefef; --surface:#ffffff; --surface-2:#e4e4e4;
+  --ink:#1f1f1f; --ink-2:#4a4a4a; --ink-3:#7a7a7a;
+  --line:#d2d2d2; --line-2:#bcbcbc;
+  --accent:#f54a4a; --accent-text:#cf2f2f;
+  --accent-faint:rgba(245,74,74,.10); --accent-dim:rgba(245,74,74,.32);
+  --glow:none;
+
+  --r:6px;
+  --f-display:"Bricolage Grotesque","Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Chivo","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  --ease-out:cubic-bezier(.2,0,0,1);
+  --ease-in:cubic-bezier(.3,0,.8,.15);
+  --t-fast:150ms; --t-base:220ms; --t-slow:400ms;
+
+  --page:1180px; --pad:clamp(20px,5vw,60px); --measure:64ch;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --ground:#0C1312; --surface:#131C1B;
-    --ink:#E4EBE9; --ink-2:#BDC9C6; --muted:#8A9A96;
-    --line:#273433; --line-2:#3B4A48;
-    --accent:#46C9BF; --wash:rgba(70,201,191,.10);
-    --ok:#6FC58A; --warn:#D9AE5F;
+    --bg:#050505; --surface:#0d0d0d; --surface-2:#161616;
+    --ink:#ffffff; --ink-2:#c2c2c2; --ink-3:#8a8a8a;
+    --line:#242424; --line-2:#363636;
+    --accent:#f54a4a; --accent-text:#ff7070;
+    --accent-faint:rgba(245,74,74,.14); --accent-dim:rgba(245,74,74,.42);
+    --glow:0 0 24px rgba(245,74,74,.28);
   }
 }
 :root[data-theme="dark"]{
-  --ground:#0C1312; --surface:#131C1B;
-  --ink:#E4EBE9; --ink-2:#BDC9C6; --muted:#8A9A96;
-  --line:#273433; --line-2:#3B4A48;
-  --accent:#46C9BF; --wash:rgba(70,201,191,.10);
-  --ok:#6FC58A; --warn:#D9AE5F;
+  --bg:#050505; --surface:#0d0d0d; --surface-2:#161616;
+  --ink:#ffffff; --ink-2:#c2c2c2; --ink-3:#8a8a8a;
+  --line:#242424; --line-2:#363636;
+  --accent:#f54a4a; --accent-text:#ff7070;
+  --accent-faint:rgba(245,74,74,.14); --accent-dim:rgba(245,74,74,.42);
+  --glow:0 0 24px rgba(245,74,74,.28);
 }
 
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  margin:0; background:var(--ground); color:var(--ink);
-  font-family:var(--f-body); font-size:17px; line-height:1.65;
-  -webkit-font-smoothing:antialiased;
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--f-body); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
 }
-.wrap{max-width:var(--page); margin:0 auto; padding-inline:var(--pad)}
-h1,h2,h3{font-family:var(--f-display); text-wrap:balance; margin:0; line-height:1.12; letter-spacing:-.018em}
+h1,h2,h3,h4{font-family:var(--f-display); margin:0; line-height:1.08; letter-spacing:-.025em; text-wrap:balance}
 p{margin:0}
-em{font-style:italic}
-code,.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
-code{font-size:.92em}
-a{color:var(--accent); text-decoration:none; border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent)}
-a:hover{border-bottom-color:var(--accent)}
-a:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
 img{max-width:100%; display:block; height:auto}
+a{color:var(--accent-text); text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+.wrap{max-width:var(--page); margin:0 auto; padding-inline:var(--pad)}
+.mono{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+code{font-family:var(--f-mono); font-size:.9em; color:var(--accent-text)}
 
-.eyebrow{
-  font-family:var(--f-mono); font-size:11.5px; font-weight:500;
-  letter-spacing:.16em; text-transform:uppercase; color:var(--muted);
-}
-
-.frame{
-  --c:var(--line-2); --s:14px; --t:1.5px; padding:12px;
+/* ---------- ambiente (Neon Noir: radial tenue + deriva lenta) ---------- */
+.ambiente{
+  position:fixed; inset:-20vmax; z-index:-1; pointer-events:none;
   background:
-    linear-gradient(var(--c) 0 0) 0 0/var(--s) var(--t) no-repeat,
-    linear-gradient(var(--c) 0 0) 0 0/var(--t) var(--s) no-repeat,
-    linear-gradient(var(--c) 0 0) 100% 0/var(--s) var(--t) no-repeat,
-    linear-gradient(var(--c) 0 0) 100% 0/var(--t) var(--s) no-repeat,
-    linear-gradient(var(--c) 0 0) 0 100%/var(--s) var(--t) no-repeat,
-    linear-gradient(var(--c) 0 0) 0 100%/var(--t) var(--s) no-repeat,
-    linear-gradient(var(--c) 0 0) 100% 100%/var(--s) var(--t) no-repeat,
-    linear-gradient(var(--c) 0 0) 100% 100%/var(--t) var(--s) no-repeat;
+    radial-gradient(42vmax 32vmax at 18% 0%, var(--accent-faint), transparent 70%),
+    radial-gradient(38vmax 30vmax at 88% 22%, var(--accent-faint), transparent 72%);
 }
+.anim .ambiente{animation:deriva 48s ease-in-out infinite alternate}
+@keyframes deriva{to{transform:translate3d(2.5%,-2%,0) scale(1.08)}}
 
+/* ---------- barra de progreso de lectura ---------- */
+.progreso{position:fixed; top:0; left:0; height:2px; width:100%; transform-origin:0 50%; background:var(--accent); z-index:60; transform:scaleX(0)}
+@supports (animation-timeline:scroll()){
+  .anim .progreso{animation:avance linear; animation-timeline:scroll(root block)}
+}
+@keyframes avance{from{transform:scaleX(0)} to{transform:scaleX(1)}}
+
+/* ---------- encabezado ---------- */
 .topbar{
-  position:sticky; top:0; z-index:20;
-  background:color-mix(in srgb,var(--ground) 92%,transparent);
-  backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+  position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--bg) 86%,transparent); backdrop-filter:blur(10px);
 }
-.topbar .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px; height:56px}
-.topbar strong{font-family:var(--f-display); font-size:14px; letter-spacing:.01em}
-.topnav{display:flex; gap:22px}
-.topnav a{font-family:var(--f-mono); font-size:12px; letter-spacing:.06em; color:var(--ink-2); border:0; text-transform:uppercase}
-.topnav a:hover{color:var(--accent)}
-@media(max-width:700px){.topnav{display:none}}
-
-.hero{padding:clamp(56px,9vw,104px) 0 clamp(36px,5vw,56px)}
-.hero h1{font-size:clamp(38px,6.6vw,70px); font-weight:700; margin-bottom:14px}
-.hero .role{
-  font-family:var(--f-mono); font-size:clamp(12px,1.5vw,14px); letter-spacing:.1em;
-  text-transform:uppercase; color:var(--accent); margin-bottom:28px; line-height:1.7;
+.topbar .wrap{display:flex; align-items:center; gap:18px; height:60px}
+.marca{font-family:var(--f-display); font-weight:700; font-size:15px; letter-spacing:-.01em; margin-right:auto}
+.marca b{color:var(--accent)}
+.topnav{display:flex; gap:4px}
+.topnav a{
+  font-family:var(--f-mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-2); padding:7px 11px; border-radius:var(--r); transition:color var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
 }
-.hero .lede{font-size:clamp(18px,2.2vw,21px); max-width:var(--measure); color:var(--ink-2)}
-.contact{display:flex; flex-wrap:wrap; gap:10px 26px; margin-top:30px; font-family:var(--f-mono); font-size:13.5px}
-.contact span{color:var(--muted)}
-
-.stats{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  border-top:1px solid var(--line); margin-top:44px;
+.topnav a:hover{color:var(--ink); background:var(--surface-2)}
+.ctrl{
+  display:inline-flex; align-items:center; justify-content:center; gap:6px; height:32px; padding:0 11px;
+  font-family:var(--f-mono); font-size:11px; letter-spacing:.06em;
+  background:var(--surface); color:var(--ink-2); border:1px solid var(--line); border-radius:var(--r);
+  cursor:pointer; transition:border-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
 }
-.stat{padding:20px 20px 20px 0; border-right:1px solid var(--line)}
-.stat:last-child{border-right:0}
-.stat b{display:block; font-family:var(--f-display); font-size:30px; font-weight:600; font-variant-numeric:tabular-nums; letter-spacing:-.02em}
-.stat span{display:block; font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:6px}
-@media(max-width:620px){.stat{border-right:0; border-bottom:1px solid var(--line); padding-right:0}}
+.ctrl:hover{border-color:var(--accent-dim); color:var(--ink)}
+@media(max-width:860px){.topnav{display:none}}
 
-section{padding-block:clamp(44px,6vw,76px); border-top:1px solid var(--line)}
-.sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:28px; flex-wrap:wrap}
-.sec-head h2{font-size:clamp(23px,3vw,30px); font-weight:600}
-.prose{max-width:var(--measure)}
-.prose p + p{margin-top:1em}
-
-.proj{border-top:1px solid var(--line); padding-top:34px; margin-top:52px}
-.proj:first-of-type{border-top:0; margin-top:0; padding-top:0}
-.proj-title{font-size:clamp(25px,3.4vw,36px); font-weight:700; margin-bottom:10px}
-.proj-sub{font-family:var(--f-mono); font-size:13px; color:var(--muted); letter-spacing:.03em; margin-bottom:26px; line-height:1.7}
-.proj-sub b{color:var(--accent); font-weight:500}
-
-.block{margin-top:32px}
-.block > .eyebrow{display:block; padding-bottom:7px; border-bottom:1px solid var(--line); margin-bottom:16px}
-
-.ficha{display:grid; grid-template-columns:minmax(130px,170px) 1fr; gap:0; font-size:15.5px; margin:0}
-.ficha dt{
-  font-family:var(--f-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--muted); padding:11px 16px 11px 0; border-top:1px solid var(--line);
+/* ---------- portada ---------- */
+.hero{padding:clamp(60px,11vw,132px) 0 clamp(40px,6vw,72px)}
+.hero h1{font-size:clamp(44px,8.2vw,104px); font-weight:800; letter-spacing:-.04em}
+.hero h1 .l2{color:var(--accent); text-shadow:var(--glow)}
+.hero .rol{
+  font-family:var(--f-mono); font-size:clamp(11.5px,1.4vw,13.5px); letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink-3); margin-top:22px;
 }
-.ficha dd{margin:0; padding:11px 0; border-top:1px solid var(--line); color:var(--ink-2)}
-.ficha dt:first-of-type,.ficha dd:first-of-type{border-top:0}
-@media(max-width:560px){
-  .ficha{grid-template-columns:1fr}
-  .ficha dt{padding-bottom:0}
-  .ficha dd{padding-top:4px; border-top:0}
+.hero .lede{font-size:clamp(18px,2vw,22px); color:var(--ink-2); max-width:54ch; margin-top:26px}
+.acciones{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px}
+.btn{
+  display:inline-flex; align-items:center; gap:9px; padding:13px 22px; border-radius:var(--r);
+  font-family:var(--f-mono); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;
+  border:1px solid var(--accent); background:var(--accent); color:#fff;
+  transition:transform var(--t-fast) var(--ease-out), box-shadow var(--t-base) var(--ease-out), background var(--t-fast) var(--ease-out);
+}
+.btn:hover{transform:translateY(-2px); box-shadow:0 8px 26px rgba(245,74,74,.3)}
+.btn.sec{background:transparent; color:var(--ink); border-color:var(--line-2)}
+.btn.sec:hover{border-color:var(--accent); color:var(--accent-text); box-shadow:none}
+
+/* ---------- banda de métricas ---------- */
+.metricas{border-block:1px solid var(--line); background:var(--surface)}
+.metricas .wrap{display:grid; grid-template-columns:repeat(4,1fr)}
+.met{padding:30px 22px 30px 0; border-right:1px solid var(--line)}
+.met:last-child{border-right:0}
+.met b{display:block; font-family:var(--f-display); font-weight:700; font-size:clamp(28px,3.6vw,42px); letter-spacing:-.03em; font-variant-numeric:tabular-nums; color:var(--accent)}
+.met span{display:block; font-family:var(--f-mono); font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); margin-top:9px; min-height:14px}
+@media(max-width:780px){
+  .metricas .wrap{grid-template-columns:repeat(2,1fr)}
+  .met{border-right:0; border-bottom:1px solid var(--line); padding-right:0}
+  .met:nth-child(odd){border-right:1px solid var(--line); padding-right:22px}
 }
 
-.chips{display:flex; flex-wrap:wrap; gap:7px}
+/* ---------- secciones ---------- */
+section{padding-block:clamp(60px,8vw,112px)}
+.titulo-sec{display:flex; align-items:center; gap:16px; margin-bottom:clamp(28px,4vw,48px)}
+.titulo-sec h2{font-size:clamp(28px,4.2vw,50px); font-weight:700; letter-spacing:-.035em}
+.titulo-sec::after{content:""; flex:1; height:1px; background:var(--line)}
+.prosa{max-width:var(--measure); color:var(--ink-2); font-size:17.5px}
+.prosa p + p{margin-top:1.05em}
+.prosa strong{color:var(--ink); font-weight:600}
+
+/* perfil: dos columnas asimétricas */
+.perfil-grid{display:grid; grid-template-columns:1.35fr .95fr; gap:clamp(28px,5vw,72px); align-items:start}
+@media(max-width:900px){.perfil-grid{grid-template-columns:1fr}}
+.tarjeta{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:26px}
+.tarjeta h3{font-size:19px; font-weight:700; margin-bottom:4px}
+.tarjeta .periodo{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.08em; color:var(--accent-text); margin-bottom:16px}
+.tarjeta ul{margin:0; padding-left:17px; color:var(--ink-2); font-size:15.5px; display:grid; gap:9px}
+.tarjeta li::marker{color:var(--accent)}
+
+/* ---------- proyecto ---------- */
+.proyecto{padding-top:clamp(44px,6vw,84px); border-top:1px solid var(--line); margin-top:clamp(44px,6vw,84px)}
+.proyecto:first-of-type{border-top:0; margin-top:0; padding-top:0}
+.p-cab{display:flex; flex-wrap:wrap; align-items:baseline; gap:12px 20px; margin-bottom:10px}
+.p-cab h3{font-size:clamp(26px,4vw,44px); font-weight:800; letter-spacing:-.035em}
+.p-indice{font-family:var(--f-mono); font-size:12px; color:var(--accent); letter-spacing:.1em}
+.p-meta{font-family:var(--f-mono); font-size:12.5px; color:var(--ink-3); line-height:1.75; margin-bottom:30px; max-width:80ch}
+.p-meta b{color:var(--ink-2); font-weight:500}
+.estado{display:inline-flex; align-items:center; gap:7px}
+.punto{width:7px; height:7px; border-radius:50%; background:currentColor; flex:none}
+.vivo{color:#3f9e63} .pend{color:#c89437}
+
+h4.bloque{
+  font-family:var(--f-display); font-size:13px; font-weight:700; letter-spacing:.02em;
+  text-transform:uppercase; color:var(--ink); margin:0 0 14px;
+  padding-left:14px; border-left:2px solid var(--accent);
+}
+.sub{margin-top:34px}
+
+/* stack */
+.stack{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px 28px}
+.stack dt{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px}
+.stack dd{margin:0; display:flex; flex-wrap:wrap; gap:6px}
 .chip{
-  font-family:var(--f-mono); font-size:12px; padding:4px 9px;
-  border:1px solid var(--line-2); color:var(--ink-2); background:var(--surface);
+  font-family:var(--f-mono); font-size:11.5px; padding:4px 9px; border-radius:var(--r);
+  background:var(--surface-2); color:var(--ink-2); border:1px solid transparent;
+  transition:border-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out), transform var(--t-fast) var(--ease-out);
 }
+.chip:hover{border-color:var(--accent-dim); color:var(--ink); transform:translateY(-1px)}
 
-.res{list-style:none; margin:0; padding:0; display:grid; gap:14px; max-width:var(--measure)}
-.res li{padding-left:26px; position:relative}
-.res li::before{
-  content:""; position:absolute; left:0; top:.62em; width:11px; height:11px;
-  border-left:1.5px solid var(--accent); border-bottom:1.5px solid var(--accent);
-}
-.res b{font-family:var(--f-mono); font-weight:500; font-size:.95em; font-variant-numeric:tabular-nums; color:var(--ink)}
+/* resultados */
+.res{list-style:none; margin:0; padding:0; display:grid; gap:15px; max-width:var(--measure)}
+.res li{padding-left:24px; position:relative; color:var(--ink-2)}
+.res li::before{content:""; position:absolute; left:0; top:.58em; width:9px; height:9px; border:1.5px solid var(--accent); border-radius:1px; transform:rotate(45deg)}
+.res b{color:var(--ink); font-weight:600}
+.res .cifra{font-family:var(--f-mono); color:var(--accent-text); font-weight:500}
 
-.figs{display:grid; gap:22px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+/* figuras */
 figure{margin:0}
-figure img{border:1px solid var(--line)}
-figcaption{font-family:var(--f-mono); font-size:11.5px; line-height:1.55; color:var(--muted); margin-top:10px; letter-spacing:.02em}
-.diagram{overflow-x:auto; background:var(--surface); border:1px solid var(--line); padding:16px}
-.diagram svg{min-width:700px; width:100%; height:auto; display:block}
-
-.tblwrap{overflow-x:auto}
-.tbl{width:100%; border-collapse:collapse; font-size:15px; min-width:600px}
-.tbl th,.tbl td{text-align:left; padding:10px 16px 10px 0; border-bottom:1px solid var(--line); vertical-align:top}
-.tbl th{font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:500}
-.tbl td.n{font-family:var(--f-mono); font-variant-numeric:tabular-nums; white-space:nowrap}
-
-.estado{display:inline-flex; align-items:baseline; gap:8px; font-family:var(--f-mono); font-size:12.5px; line-height:1.6}
-.dot{width:7px; height:7px; background:currentColor; border-radius:50%; flex:none; transform:translateY(-1px)}
-.e-vivo{color:var(--ok)} .e-pend{color:var(--warn)}
-
-.nota{
-  font-family:var(--f-mono); font-size:12.5px; line-height:1.65; color:var(--muted);
-  border-left:2px solid var(--line-2); padding-left:14px; margin-top:20px; max-width:64ch;
+.marco{
+  border:1px solid var(--line); border-radius:var(--r); overflow:hidden; background:var(--surface-2);
+  transition:border-color var(--t-base) var(--ease-out), box-shadow var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
 }
+.marco:hover{border-color:var(--accent-dim); box-shadow:0 14px 40px rgba(0,0,0,.18)}
+.anim .marco:hover{transform:translateY(-3px)}
+figcaption{font-family:var(--f-mono); font-size:11.5px; line-height:1.6; color:var(--ink-3); margin-top:11px}
+figcaption b{color:var(--ink-2); font-weight:500}
 
-footer{border-top:1px solid var(--line); padding-block:40px; color:var(--muted); font-family:var(--f-mono); font-size:12.5px}
-footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap}
+/* mosaico sin huérfanos. Las imágenes llevan width/height en el HTML para que el
+   navegador reserve el espacio: sin eso, lazy loading las colapsa a cero y el
+   mosaico aparece vacío hasta que cargan. */
+.par{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+@media(max-width:760px){.par{grid-template-columns:1fr}}
+.ancho{grid-column:1 / -1}
+.par .marco img,.banda .marco img{width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top center}
+/* captura vertical de celular: se enmarca centrada en vez de recortarla */
+.marco.retrato{display:flex; justify-content:center; align-items:center; padding:20px; background:var(--surface-2)}
+.par .marco.retrato img{width:auto; max-height:330px; aspect-ratio:auto; object-fit:contain; border-radius:4px}
+
+/* diagramas */
+.diagrama{overflow-x:auto; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:18px}
+.diagrama svg{min-width:720px; width:100%; height:auto; display:block}
+.pie{font-family:var(--f-mono); font-size:12px; line-height:1.68; color:var(--ink-3); border-left:2px solid var(--line-2); padding-left:15px; margin-top:20px; max-width:66ch}
+
+/* tabla */
+.tablawrap{overflow-x:auto}
+table{width:100%; border-collapse:collapse; font-size:15px; min-width:600px}
+th,td{text-align:left; padding:12px 18px 12px 0; border-bottom:1px solid var(--line); vertical-align:top}
+th{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); font-weight:500}
+td{color:var(--ink-2)}
+td.n{font-family:var(--f-mono); font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--ink)}
+td.n.up{color:var(--accent-text)}
+tbody tr{transition:background var(--t-fast) var(--ease-out)}
+tbody tr:hover{background:var(--accent-faint)}
+
+/* layout B: texto fijo + mosaico */
+.pegado{display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(26px,4vw,56px); align-items:start}
+@media(max-width:980px){.pegado{grid-template-columns:1fr}}
+.pegado > .col-txt{position:sticky; top:84px}
+@media(max-width:980px){.pegado > .col-txt{position:static}}
+
+/* layout C: bandas editoriales */
+.banda{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,52px); align-items:center; margin-top:30px}
+.banda:nth-of-type(even) > figure{order:-1}
+@media(max-width:860px){.banda{grid-template-columns:1fr} .banda:nth-of-type(even) > figure{order:0}}
+
+/* competencias */
+/* 6 bloques: 3x2 en escritorio, 2x3 en tablet, 1 columna en celular.
+   Nunca auto-fit aca: con 6 items dejaba una fila de 4 y otra de 2, con huecos. */
+.comp{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r); overflow:hidden}
+@media(max-width:900px){.comp{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.comp{grid-template-columns:1fr}}
+.comp > div{background:var(--bg); padding:22px}
+.comp h4{font-family:var(--f-mono); font-size:10.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--accent-text); margin-bottom:13px; font-weight:500}
+
+/* contacto */
+.cierre{text-align:left; padding-block:clamp(70px,9vw,120px)}
+.cierre h2{font-size:clamp(34px,6vw,76px); font-weight:800; letter-spacing:-.04em; max-width:18ch}
+.cierre .lede{font-size:clamp(17px,1.9vw,20px); color:var(--ink-2); max-width:52ch; margin-top:22px}
+
+footer{border-top:1px solid var(--line); padding-block:34px; color:var(--ink-3); font-family:var(--f-mono); font-size:11.5px}
+footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+
+/* ===== MOTION =====
+   Regla del vault: el reposo en CSS es el estado FINAL. El JS solo anima
+   desde un desvio hacia ese reposo. Sin JS, todo se ve igual. */
+.anim .rev{opacity:0; transform:translateY(22px)}
+.anim .rev.vis{opacity:1; transform:none; transition:opacity .62s var(--ease-out), transform .62s var(--ease-out)}
+.anim .rev.d1.vis{transition-delay:.07s}
+.anim .rev.d2.vis{transition-delay:.14s}
+.anim .rev.d3.vis{transition-delay:.21s}
+
+.anim .entra{animation:subir .78s var(--ease-out) backwards}
+.anim .e1{animation-delay:.05s} .anim .e2{animation-delay:.16s}
+.anim .e3{animation-delay:.27s} .anim .e4{animation-delay:.38s}
+@keyframes subir{from{opacity:0; transform:translateY(26px)}}
 </style>
+
+<div class="ambiente"></div>
+<div class="progreso"></div>
 
 <header class="topbar">
   <div class="wrap">
-    <strong>Sergio Masao Herrera Hueda</strong>
+    <span class="marca">Sergio Masao Herrera<b>.</b></span>
     <nav class="topnav">
       <a href="#perfil">Perfil</a>
       <a href="#proyectos">Proyectos</a>
-      <a href="#stack">Competencias</a>
+      <a href="#competencias">Competencias</a>
       <a href="#contacto">Contacto</a>
     </nav>
+    <button class="ctrl" id="btn-mov" type="button" aria-pressed="true">Movimiento</button>
+    <button class="ctrl" id="btn-tema" type="button">Tema</button>
   </div>
 </header>
 
@@ -184,145 +293,124 @@ footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wr
 
 <div class="wrap">
   <div class="hero">
-    <p class="eyebrow" style="margin-bottom:18px">Portafolio profesional &middot; Universidad de Montemorelos</p>
-    <h1>Sergio Masao<br>Herrera Hueda</h1>
-    <p class="role">Ingeniería en Sistemas &middot; Visión por computadora, datos y sistemas desplegables</p>
-    <p class="lede">
-      Construyo sistemas completos y los dejo funcionando: del algoritmo de visión que recorta un
-      documento al contenedor que lo sirve en la red de una oficina. Las tres piezas de este portafolio
-      son software que alguien usa —o va a usar— para trabajar, no ejercicios de clase.
-    </p>
-    <div class="contact">
-      <span>Montemorelos, N.L., México</span>
-      <a href="mailto:sergiohmhh133@gmail.com">sergiohmhh133@gmail.com</a>
-      <a href="https://www.linkedin.com/in/masao-hueda-108b583b4" target="_blank" rel="noopener">LinkedIn</a>
+    <h1><span class="entra e1" style="display:block">Construyo sistemas</span><span class="l2 entra e2" style="display:block">y los dejo andando.</span></h1>
+    <p class="rol entra e3">Ingeniería en Sistemas · Visión por computadora, datos e infraestructura</p>
+    <p class="lede entra e3">Del algoritmo que recorta un documento al contenedor que lo sirve en la red de una oficina. Tres sistemas que alguien usa para trabajar.</p>
+    <div class="acciones entra e4">
+      <a class="btn" href="#proyectos">Ver los proyectos</a>
+      <a class="btn sec" href="mailto:sergiohmhh133@gmail.com">Escribirme</a>
     </div>
+  </div>
+</div>
 
-    <div class="stats">
-      <div class="stat"><b>3</b><span>Sistemas documentados</span></div>
-      <div class="stat"><b>94.1&thinsp;%</b><span>Confianza OCR alcanzada</span></div>
-      <div class="stat"><b>132</b><span>Productos catalogados</span></div>
-      <div class="stat"><b>17</b><span>Idiomas implementados</span></div>
-      <div class="stat"><b>16</b><span>Hallazgos de seguridad atendidos</span></div>
-    </div>
+<div class="metricas">
+  <div class="wrap">
+    <div class="met rev"><b data-n="94.1" data-suf="%">94.1%</b><span>Confianza de OCR</span></div>
+    <div class="met rev d1"><b data-n="132">132</b><span>Fragancias en catálogo</span></div>
+    <div class="met rev d2"><b data-n="17">17</b><span>Idiomas implementados</span></div>
+    <div class="met rev d3"><b>29/29</b><span>Pruebas en verde</span></div>
   </div>
 </div>
 
 <section id="perfil">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">01</p><h2>Perfil profesional</h2></div>
-    <div class="prose">
-      <p>
-        Estudiante de Ingeniería en Sistemas orientado a <em>machine learning</em>, ciencia de datos y
-        realidad aumentada aplicada a entornos industriales. Combino desarrollo frontend en React con
-        bases matemáticas y análisis de datos, y sigo una ruta activa de autoestudio hacia visión por
-        computadora y sistemas AR/VR, con miras a especializarme a nivel de posgrado.
-      </p>
-      <p>
-        La forma de trabajar que muestran los tres proyectos es la misma: decidir contra evidencia y no
-        contra intuición. El preprocesamiento de imagen «a ciegas» se descartó porque, medido contra seis
-        documentos reales, <em>empeoraba</em> el reconocimiento. El generador de códigos QR se verificó
-        módulo por módulo contra una implementación independiente antes de confiar en él. Y cuando algo no
-        se puede hacer —cifrar una dirección web en el cliente, por ejemplo— queda escrito por qué, en vez
-        de simularlo.
-      </p>
-    </div>
-
-    <div class="block">
-      <p class="eyebrow">Experiencia</p>
-      <dl class="ficha">
-        <dt>Institución</dt><dd><strong>Geoscience Research Institute</strong></dd>
-        <dt>Periodo</dt><dd class="mono">Agosto 2025 — actualidad</dd>
-        <dt>Funciones</dt><dd>
-          Desarrollé, actualicé y di mantenimiento al sitio web institucional, mejorando estructura,
-          contenido y funcionamiento. Brindé soporte técnico en programas y eventos en vivo, operando
-          equipos de cómputo y gestionando transmisiones digitales. Administré y mantuve la base de datos
-          institucional, garantizando integridad, organización y disponibilidad de la información.
-        </dd>
-        <dt>Formación</dt><dd>
-          Ingeniería en Sistemas, Universidad de Montemorelos (agosto 2022 — mayo 2027). Formación
-          complementaria en curso: SAP BTP, Python y SQL.
-        </dd>
-      </dl>
+    <div class="titulo-sec rev"><h2>Perfil</h2></div>
+    <div class="perfil-grid">
+      <div class="prosa rev">
+        <p>
+          Estudiante de Ingeniería en Sistemas orientado a <strong>machine learning, ciencia de datos
+          y realidad aumentada</strong> aplicada a entornos industriales. Combino desarrollo frontend en
+          React con bases matemáticas y análisis de datos, y sigo una ruta activa de autoestudio hacia
+          visión por computadora y sistemas AR/VR, con miras a especializarme a nivel de posgrado.
+        </p>
+        <p>
+          Los tres proyectos de abajo comparten una forma de trabajar: <strong>decidir contra evidencia,
+          no contra intuición</strong>. El preprocesamiento de imagen a ciegas se descartó porque, medido
+          contra seis documentos reales, empeoraba el reconocimiento. El generador de códigos QR se
+          verificó módulo por módulo contra una implementación independiente antes de confiar en él.
+          Y cuando algo no se puede hacer, como cifrar una dirección web del lado del cliente, queda
+          escrito por qué en vez de simularlo.
+        </p>
+      </div>
+      <div class="tarjeta rev d1">
+        <h3>Geoscience Research Institute</h3>
+        <p class="periodo">AGOSTO 2025 · ACTUALIDAD</p>
+        <ul>
+          <li>Desarrollé, actualicé y di mantenimiento al sitio web institucional, mejorando estructura, contenido y funcionamiento.</li>
+          <li>Brindé soporte técnico en programas y eventos en vivo, operando equipos de cómputo y gestionando transmisiones digitales.</li>
+          <li>Administré y mantuve la base de datos institucional, garantizando integridad, organización y disponibilidad de la información.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="proyectos">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">02</p><h2>Proyectos</h2></div>
+    <div class="titulo-sec rev"><h2>Proyectos</h2></div>
 
-    <article class="proj">
-      <h3 class="proj-title">ScanDigit</h3>
-      <p class="proj-sub">Sistema de digitalización y reconocimiento de texto para oficina &middot; <b>Desarrollador único — arquitectura, servidor, cuatro interfaces, despliegue y seguridad</b> &middot; Agosto 2026 — actualidad</p>
+    <!-- ========== 01 · ScanDigit · layout dirigido por diagramas ========== -->
+    <article class="proyecto">
+      <div class="p-cab rev">
+        <span class="p-indice">01</span>
+        <h3>ScanDigit</h3>
+      </div>
+      <p class="p-meta rev">
+        Digitalización y reconocimiento de texto para oficina ·
+        <b>Desarrollador único: arquitectura, servidor, cuatro interfaces, despliegue y seguridad</b> ·
+        Agosto 2026 a la fecha ·
+        <span class="estado vivo"><i class="punto"></i>En uso, desplegado en contenedor</span>
+      </p>
 
-      <div class="block">
-        <p class="eyebrow">Contexto y problema</p>
-        <div class="prose">
+      <div class="sub rev">
+        <h4 class="bloque">Contexto y problema</h4>
+        <div class="prosa">
           <p>
             Una oficina recibía documentos en papel y fotos sueltas de celular. No existía forma de
             buscarlos: encontrar un expediente significaba revisar carpetas a mano. El encargo fue cerrar
-            el ciclo completo —subir o fotografiar un documento, extraer su texto, detectar duplicados y
-            hojas en blanco, clasificarlo y consultarlo desde cualquier computadora— con dos restricciones
-            que condicionaron todo el diseño: <strong>no se instala nada en los equipos del personal</strong>
-            y <strong>los documentos no salen de la red de la oficina</strong>.
+            el ciclo completo, de subir o fotografiar un documento a consultarlo clasificado, con dos
+            restricciones que condicionaron todo el diseño: <strong>no se instala nada en los equipos del
+            personal</strong> y <strong>los documentos no salen de la red de la oficina</strong>.
           </p>
           <p>
-            Una tercera restricción vino del uso real: el operador escanea decenas de hojas seguidas.
-            Cualquier ajuste manual —recortar esquinas, corregir el encuadre— volvía el sistema inviable,
-            así que el recorte tenía que resolverse solo.
+            Una tercera restricción vino del uso real. El operador escanea decenas de hojas seguidas, así
+            que cualquier ajuste manual de esquinas o encuadre volvía el sistema inviable. El recorte tenía
+            que resolverse solo.
           </p>
         </div>
       </div>
 
-      <div class="block">
-        <p class="eyebrow">Herramientas y tecnologías</p>
-        <dl class="ficha">
-          <dt>Servidor</dt><dd><div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">SQLite</span><span class="chip">JWT</span><span class="chip">WebSockets</span></div></dd>
-          <dt>Visión y OCR</dt><dd><div class="chips"><span class="chip">PaddleOCR</span><span class="chip">OpenCV.js</span><span class="chip">Umbral de Otsu</span><span class="chip">Canny</span><span class="chip">Varianza del Laplaciano</span><span class="chip">Suavizado EMA</span><span class="chip">Pillow</span></div></dd>
-          <dt>Interfaz</dt><dd><div class="chips"><span class="chip">React 18</span><span class="chip">Vite</span><span class="chip">Monorepo con workspaces</span><span class="chip">Anime.js</span><span class="chip">PWA</span></div></dd>
-          <dt>Infraestructura</dt><dd><div class="chips"><span class="chip">Docker</span><span class="chip">docker compose</span><span class="chip">gosu</span><span class="chip">TLS autofirmado</span><span class="chip">Reglas de firewall</span></div></dd>
-          <dt>Seguridad</dt><dd><div class="chips"><span class="chip">Cifrado en reposo (Fernet)</span><span class="chip">Cookies httpOnly</span><span class="chip">Control por roles</span><span class="chip">Bitácora de auditoría</span><span class="chip">Limitación de tasa</span></div></dd>
-          <dt>Estado</dt><dd><span class="estado e-vivo"><i class="dot"></i>En uso, desplegado en contenedor sobre la red de la oficina</span></dd>
-        </dl>
-      </div>
-
-      <div class="block">
-        <p class="eyebrow">Evidencia técnica — topología de despliegue</p>
-        <div class="diagram">
-          <svg viewBox="0 0 880 430" role="img" aria-label="Diagrama de red del despliegue de ScanDigit dentro de la red local de la oficina, sin puertos publicados hacia internet.">
+      <div class="sub rev">
+        <h4 class="bloque">Topología de despliegue</h4>
+        <div class="diagrama">
+          <svg viewBox="0 0 880 430" role="img" aria-label="Diagrama de red: ScanDigit desplegado dentro de la red local de la oficina, sin puertos publicados hacia internet.">
             <defs>
-              <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                <path d="M0,0 L8,4 L0,8 z" fill="var(--line-2)"/>
-              </marker>
-              <marker id="ara" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                <path d="M0,0 L8,4 L0,8 z" fill="var(--accent)"/>
-              </marker>
+              <marker id="f1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line-2)"/></marker>
+              <marker id="f2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--accent)"/></marker>
             </defs>
             <style>
-              .bx{fill:var(--ground); stroke:var(--line-2); stroke-width:1.2}
-              .bxa{fill:var(--wash); stroke:var(--accent); stroke-width:1.2}
+              .bx{fill:var(--bg); stroke:var(--line-2); stroke-width:1.2; rx:4}
+              .bxa{fill:var(--accent-faint); stroke:var(--accent); stroke-width:1.2; rx:4}
               .lb{font-family:var(--f-mono); font-size:11px; fill:var(--ink)}
-              .sm{font-family:var(--f-mono); font-size:9.5px; fill:var(--muted)}
-              .ac{font-family:var(--f-mono); font-size:9.5px; fill:var(--accent)}
-              .tt{font-family:var(--f-mono); font-size:9.5px; fill:var(--muted); letter-spacing:.14em}
+              .sm{font-family:var(--f-mono); font-size:9.5px; fill:var(--ink-3)}
+              .ac{font-family:var(--f-mono); font-size:9.5px; fill:var(--accent-text)}
+              .tt{font-family:var(--f-mono); font-size:9.5px; fill:var(--ink-3); letter-spacing:.14em}
               .ln{stroke:var(--line-2); stroke-width:1.2; fill:none}
               .la{stroke:var(--accent); stroke-width:1.2; fill:none}
             </style>
-
             <rect class="bx" x="24" y="12" width="140" height="34"/>
             <text class="lb" x="94" y="34" text-anchor="middle">Internet</text>
             <path class="ln" d="M94,46 L94,84" stroke-dasharray="5 4"/>
-            <path d="M85,56 L103,74 M103,56 L85,74" stroke="var(--warn)" stroke-width="1.8" fill="none"/>
+            <path d="M85,56 L103,74 M103,56 L85,74" stroke="var(--accent)" stroke-width="1.8" fill="none"/>
             <text class="sm" x="116" y="69">sin puertos publicados</text>
 
-            <rect x="24" y="84" width="832" height="286" fill="none" stroke="var(--line-2)" stroke-width="1.2" stroke-dasharray="6 5"/>
+            <rect x="24" y="84" width="832" height="286" fill="none" stroke="var(--line-2)" stroke-width="1.2" stroke-dasharray="6 5" rx="4"/>
             <text class="tt" x="40" y="104">RED LOCAL DE LA OFICINA</text>
 
             <rect class="bxa" x="48" y="118" width="264" height="146"/>
-            <text class="lb" x="64" y="140">PC de oficina &middot; Docker</text>
+            <text class="lb" x="64" y="140">PC de oficina · Docker</text>
             <rect class="bx" x="64" y="152" width="232" height="30"/>
-            <text class="sm" x="76" y="171">FastAPI :8000 &middot; sin privilegios</text>
+            <text class="sm" x="76" y="171">FastAPI :8000 · sin privilegios</text>
             <rect class="bx" x="64" y="190" width="110" height="28"/>
             <text class="sm" x="76" y="208">SQLite</text>
             <rect class="bx" x="186" y="190" width="110" height="28"/>
@@ -336,7 +424,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wr
             <rect class="bx" x="480" y="152" width="84" height="26"/><text class="sm" x="490" y="169">Panel :5174</text>
             <rect class="bx" x="382" y="186" width="90" height="26"/><text class="sm" x="392" y="203">Escáner :5173</text>
             <rect class="bx" x="480" y="186" width="84" height="26"/><text class="sm" x="490" y="203">Móvil :5176</text>
-            <text class="ac" x="382" y="232">proxy /api → :8000</text>
+            <text class="ac" x="382" y="232">proxy /api hacia :8000</text>
             <text class="sm" x="382" y="248">cookie httpOnly = sesión única</text>
 
             <rect class="bx" x="636" y="118" width="196" height="62"/>
@@ -348,264 +436,274 @@ footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wr
             <text class="sm" x="652" y="246">PWA, entra por código QR</text>
             <text class="sm" x="652" y="262">IP real de LAN detectada sola</text>
 
-            <path class="la" d="M366,196 L312,196" marker-end="url(#ara)"/>
-            <path class="ln" d="M636,150 L580,166" marker-end="url(#ar)"/>
-            <path class="ln" d="M636,240 L580,214" marker-end="url(#ar)"/>
-            <path class="la" d="M473,264 L473,296 L734,296 L734,278" marker-end="url(#ara)" stroke-dasharray="4 4"/>
+            <path class="la" d="M366,196 L312,196" marker-end="url(#f2)"/>
+            <path class="ln" d="M636,150 L580,166" marker-end="url(#f1)"/>
+            <path class="ln" d="M636,240 L580,214" marker-end="url(#f1)"/>
+            <path class="la" d="M473,264 L473,296 L734,296 L734,278" marker-end="url(#f2)" stroke-dasharray="4 4"/>
 
-            <text class="ac" x="48" y="324">ws://ws/captura autenticado — el panel se refresca solo al llegar un documento</text>
-            <text class="sm" x="48" y="342">el escáner usa sondeo cada 10 s: su credencial de estación no lleva cookie</text>
-            <text class="tt" x="48" y="400">NINGÚN ENDPOINT ACEPTA ACCESO ANÓNIMO &middot; LOS ARCHIVOS NUNCA SE SIRVEN COMO ESTÁTICOS</text>
+            <text class="ac" x="48" y="324">ws://ws/captura autenticado: el panel se refresca solo al llegar un documento</text>
+            <text class="sm" x="48" y="342">el escáner usa sondeo cada 10 s, porque su credencial de estación no lleva cookie</text>
+            <text class="tt" x="48" y="400">NINGÚN ENDPOINT ACEPTA ACCESO ANÓNIMO · LOS ARCHIVOS NUNCA SE SIRVEN COMO ESTÁTICOS</text>
           </svg>
         </div>
-        <p class="nota">
-          El diagrama recoge dos decisiones que costaron trabajo. La sesión viaja en una cookie
-          <code>httpOnly</code> y no en almacenamiento local: las cookies se delimitan por host y no por
-          puerto, así que un solo inicio de sesión sirve para las cuatro aplicaciones. Y HSTS quedó fuera
-          a propósito, porque el navegador lo memoriza por nombre de host sin distinguir puerto, y
-          activarlo habría forzado HTTPS en todos los proyectos locales de esa máquina durante semanas.
+        <p class="pie">
+          Dos decisiones que costaron trabajo. La sesión viaja en cookie <code>httpOnly</code> y no en
+          almacenamiento local, porque las cookies se delimitan por host y no por puerto, así que un solo
+          inicio de sesión sirve para las cuatro aplicaciones. Y HSTS quedó fuera a propósito: el navegador
+          lo memoriza por nombre de host sin distinguir puerto, y activarlo habría forzado HTTPS en todos
+          los proyectos locales de esa máquina durante semanas.
         </p>
       </div>
 
-      <div class="block">
-        <p class="eyebrow">Evidencia técnica — flujo de captura y reconocimiento</p>
-        <div class="diagram">
-          <svg viewBox="0 0 880 280" role="img" aria-label="Diagrama del flujo de captura, desde el fotograma de la cámara hasta el documento cifrado y consultable.">
-            <defs>
-              <marker id="a2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                <path d="M0,0 L8,4 L0,8 z" fill="var(--line-2)"/>
-              </marker>
-            </defs>
+      <div class="sub rev">
+        <h4 class="bloque">Flujo de captura y reconocimiento</h4>
+        <div class="diagrama">
+          <svg viewBox="0 0 880 280" role="img" aria-label="Diagrama del flujo: del fotograma de cámara al documento cifrado y consultable.">
+            <defs><marker id="f3" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--line-2)"/></marker></defs>
             <style>
-              .s{fill:var(--ground); stroke:var(--line-2); stroke-width:1.2}
-              .sa{fill:var(--wash); stroke:var(--accent); stroke-width:1.2}
+              .s{fill:var(--bg); stroke:var(--line-2); stroke-width:1.2; rx:4}
+              .sa{fill:var(--accent-faint); stroke:var(--accent); stroke-width:1.2; rx:4}
               .t{font-family:var(--f-mono); font-size:10.5px; fill:var(--ink)}
-              .ts{font-family:var(--f-mono); font-size:9px; fill:var(--muted)}
+              .ts{font-family:var(--f-mono); font-size:9px; fill:var(--ink-3)}
               .fl{stroke:var(--line-2); stroke-width:1.2; fill:none}
             </style>
-
             <rect class="s" x="16" y="40" width="116" height="56"/>
             <text class="t" x="30" y="64">Fotograma</text><text class="ts" x="30" y="82">cámara en vivo</text>
-
             <rect class="s" x="154" y="40" width="130" height="56"/>
             <text class="t" x="168" y="62">Descarte por</text><text class="t" x="168" y="76">borrosidad</text>
             <text class="ts" x="168" y="91">varianza Laplaciano</text>
-
             <rect class="s" x="306" y="40" width="140" height="56"/>
             <text class="t" x="320" y="62">Otsu y contorno</text><text class="t" x="320" y="76">de mayor área</text>
             <text class="ts" x="320" y="91">esquinas por cuadrante</text>
-
             <rect class="sa" x="468" y="40" width="152" height="56"/>
             <text class="t" x="482" y="62">Filtro de brillo</text>
-            <text class="ts" x="482" y="78">papel 190–210, mesa 25–78</text>
+            <text class="ts" x="482" y="78">papel 190 a 210, mesa 25 a 78</text>
             <text class="ts" x="482" y="91">umbral = 140</text>
-
             <rect class="s" x="642" y="40" width="130" height="56"/>
             <text class="t" x="656" y="64">Suavizado EMA</text>
             <text class="ts" x="656" y="82">rechaza atípicos</text>
-
-            <path class="fl" d="M132,68 L154,68" marker-end="url(#a2)"/>
-            <path class="fl" d="M284,68 L306,68" marker-end="url(#a2)"/>
-            <path class="fl" d="M446,68 L468,68" marker-end="url(#a2)"/>
-            <path class="fl" d="M620,68 L642,68" marker-end="url(#a2)"/>
-            <path class="fl" d="M707,96 L707,128 L90,128 L90,166" marker-end="url(#a2)"/>
-
-            <rect class="s" x="16" y="166" width="150" height="58"/>
-            <text class="t" x="30" y="188">Corrección de</text><text class="t" x="30" y="202">perspectiva</text>
-            <text class="ts" x="30" y="217">recorte tras enderezar</text>
-
-            <rect class="sa" x="188" y="166" width="146" height="58"/>
-            <text class="t" x="202" y="188">PaddleOCR</text>
-            <text class="ts" x="202" y="204">corre en hilo aparte,</text>
-            <text class="ts" x="202" y="217">no bloquea el servidor</text>
-
-            <rect class="s" x="356" y="166" width="162" height="58"/>
-            <text class="t" x="370" y="188">Confianza del texto</text>
-            <text class="ts" x="370" y="204">umbral de revisión = 60.0</text>
-            <text class="ts" x="370" y="217">marca los dudosos</text>
-
-            <rect class="s" x="540" y="166" width="146" height="58"/>
-            <text class="t" x="554" y="188">Clasificación</text>
-            <text class="ts" x="554" y="204">duplicados y hojas</text>
-            <text class="ts" x="554" y="217">en blanco</text>
-
-            <rect class="sa" x="708" y="166" width="156" height="58"/>
-            <text class="t" x="722" y="188">Cifrado y guardado</text>
-            <text class="ts" x="722" y="204">Fernet y SQLite,</text>
-            <text class="ts" x="722" y="217">consultable y auditado</text>
-
-            <path class="fl" d="M166,195 L188,195" marker-end="url(#a2)"/>
-            <path class="fl" d="M334,195 L356,195" marker-end="url(#a2)"/>
-            <path class="fl" d="M518,195 L540,195" marker-end="url(#a2)"/>
-            <path class="fl" d="M686,195 L708,195" marker-end="url(#a2)"/>
+            <path class="fl" d="M132,68 L154,68" marker-end="url(#f3)"/>
+            <path class="fl" d="M284,68 L306,68" marker-end="url(#f3)"/>
+            <path class="fl" d="M446,68 L468,68" marker-end="url(#f3)"/>
+            <path class="fl" d="M620,68 L642,68" marker-end="url(#f3)"/>
+            <path class="fl" d="M707,96 L707,128 L90,128 L90,168" marker-end="url(#f3)"/>
+            <rect class="s" x="16" y="168" width="150" height="58"/>
+            <text class="t" x="30" y="190">Corrección de</text><text class="t" x="30" y="204">perspectiva</text>
+            <text class="ts" x="30" y="219">recorte tras enderezar</text>
+            <rect class="sa" x="188" y="168" width="146" height="58"/>
+            <text class="t" x="202" y="190">PaddleOCR</text>
+            <text class="ts" x="202" y="206">corre en hilo aparte,</text>
+            <text class="ts" x="202" y="219">no bloquea el servidor</text>
+            <rect class="s" x="356" y="168" width="162" height="58"/>
+            <text class="t" x="370" y="190">Confianza del texto</text>
+            <text class="ts" x="370" y="206">umbral de revisión = 60.0</text>
+            <text class="ts" x="370" y="219">marca los dudosos</text>
+            <rect class="s" x="540" y="168" width="146" height="58"/>
+            <text class="t" x="554" y="190">Clasificación</text>
+            <text class="ts" x="554" y="206">duplicados y hojas</text>
+            <text class="ts" x="554" y="219">en blanco</text>
+            <rect class="sa" x="708" y="168" width="156" height="58"/>
+            <text class="t" x="722" y="190">Cifrado y guardado</text>
+            <text class="ts" x="722" y="206">Fernet y SQLite,</text>
+            <text class="ts" x="722" y="219">consultable y auditado</text>
+            <path class="fl" d="M166,197 L188,197" marker-end="url(#f3)"/>
+            <path class="fl" d="M334,197 L356,197" marker-end="url(#f3)"/>
+            <path class="fl" d="M518,197 L540,197" marker-end="url(#f3)"/>
+            <path class="fl" d="M686,197 L708,197" marker-end="url(#f3)"/>
           </svg>
         </div>
-        <p class="nota">
-          El bloque resaltado del filtro de brillo es el que resolvió el problema real: el área del contorno
-          por sí sola empataba el documento con la mesa de madera. Midiendo el brillo medio —papel entre 190
-          y 210, mesa entre 25 y 78— los dos casos que fallaban quedaron resueltos sin pedirle al operador
-          ni un clic extra.
+        <p class="pie">
+          El bloque resaltado del filtro de brillo es el que resolvió el problema real. El área del contorno
+          por sí sola empataba el documento con la mesa de madera. Midiendo el brillo medio, papel entre 190
+          y 210 contra mesa entre 25 y 78, los dos casos que fallaban quedaron resueltos sin pedirle al
+          operador ni un clic extra.
         </p>
       </div>
 
-      <div class="block">
-        <p class="eyebrow">Resultados e impacto</p>
-        <div class="tblwrap">
-          <table class="tbl">
+      <div class="sub rev">
+        <h4 class="bloque">Herramientas y tecnologías</h4>
+        <dl class="stack">
+          <div><dt>Servidor</dt><dd><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">SQLite</span><span class="chip">JWT</span><span class="chip">WebSockets</span></dd></div>
+          <div><dt>Visión y OCR</dt><dd><span class="chip">PaddleOCR</span><span class="chip">OpenCV.js</span><span class="chip">Otsu</span><span class="chip">Canny</span><span class="chip">Laplaciano</span><span class="chip">Suavizado EMA</span></dd></div>
+          <div><dt>Interfaz</dt><dd><span class="chip">React 18</span><span class="chip">Vite</span><span class="chip">Monorepo</span><span class="chip">Anime.js</span><span class="chip">PWA</span></dd></div>
+          <div><dt>Infraestructura</dt><dd><span class="chip">Docker</span><span class="chip">compose</span><span class="chip">gosu</span><span class="chip">TLS</span><span class="chip">Firewall</span></dd></div>
+          <div><dt>Seguridad</dt><dd><span class="chip">Fernet</span><span class="chip">Cookies httpOnly</span><span class="chip">Roles</span><span class="chip">Auditoría</span><span class="chip">Rate limiting</span></dd></div>
+        </dl>
+      </div>
+
+      <div class="sub rev">
+        <h4 class="bloque">Resultados e impacto</h4>
+        <div class="tablawrap">
+          <table>
             <thead><tr><th>Indicador</th><th>Antes</th><th>Después</th><th>Cómo se midió</th></tr></thead>
             <tbody>
-              <tr><td>Confianza promedio de reconocimiento</td><td class="n">61.6&thinsp;%</td><td class="n">94.1&thinsp;%</td><td>Mismos documentos reales de la oficina, al sustituir EasyOCR por PaddleOCR</td></tr>
-              <tr><td>Hallazgos críticos de seguridad abiertos</td><td class="n">4</td><td class="n">0</td><td>Auditoría externa de 16 hallazgos; los 4 de prioridad máxima cerrados y verificados</td></tr>
-              <tr><td>Documentos migrados a cifrado en reposo</td><td class="n">0</td><td class="n">28</td><td>Migración de documentos reales, sin pérdidas</td></tr>
-              <tr><td>Idiomas disponibles en la interfaz</td><td class="n">1</td><td class="n">17</td><td>487 claves por idioma en las cuatro aplicaciones, con diccionario propio</td></tr>
-              <tr><td>Pruebas del servidor antes de desplegar</td><td class="n">—</td><td class="n">29/29</td><td>Contenedor aislado contra una copia de los datos reales</td></tr>
+              <tr><td>Confianza promedio de reconocimiento</td><td class="n">61.6%</td><td class="n up">94.1%</td><td>Mismos documentos reales, al sustituir EasyOCR por PaddleOCR</td></tr>
+              <tr><td>Hallazgos críticos de seguridad abiertos</td><td class="n">4</td><td class="n up">0</td><td>Auditoría externa de 16 hallazgos, los 4 de prioridad máxima cerrados y verificados</td></tr>
+              <tr><td>Documentos migrados a cifrado en reposo</td><td class="n">0</td><td class="n up">28</td><td>Migración de documentos reales, sin pérdidas</td></tr>
+              <tr><td>Idiomas disponibles en la interfaz</td><td class="n">1</td><td class="n up">17</td><td>487 claves por idioma en las cuatro aplicaciones, con diccionario propio</td></tr>
+              <tr><td>Pruebas del servidor antes de desplegar</td><td class="n">0</td><td class="n up">29/29</td><td>Contenedor aislado contra una copia de los datos reales</td></tr>
             </tbody>
           </table>
         </div>
         <ul class="res" style="margin-top:28px">
-          <li><b>Los cuatro hallazgos críticos</b> eran de libro: no había autenticación, los documentos quedaban expuestos como archivos estáticos, el identificador de usuario podía falsificarse desde el cliente y el control de origen estaba abierto. Se atacaron primero, cambiando el orden del plan original, que los dejaba para el final.</li>
-          <li><b>El preprocesamiento «obvio» se descartó con datos.</b> Enderezar, quitar ruido y ecualizar antes del reconocimiento es el consejo estándar; probado contra seis documentos reales, <em>empeoró</em> el resultado. Quedó documentado para no repetirlo a ciegas.</li>
-          <li><b>El cifrado protege lo que puede, y el límite está escrito:</b> defiende contra copiar la carpeta de documentos sin la llave, no contra alguien con acceso al servidor en marcha. El proceso no arranca sin la llave, sin valor por omisión silencioso.</li>
+          <li><b>Los cuatro hallazgos críticos eran de libro:</b> no había autenticación, los documentos quedaban expuestos como archivos estáticos, el identificador de usuario podía falsificarse desde el cliente y el control de origen estaba abierto. Se atacaron primero, cambiando el orden del plan original, que los dejaba para el final.</li>
+          <li><b>El preprocesamiento obvio se descartó con datos.</b> Enderezar, quitar ruido y ecualizar antes del reconocimiento es el consejo estándar. Probado contra <span class="cifra">seis documentos reales</span>, empeoró el resultado, y quedó documentado para no repetirlo a ciegas.</li>
+          <li><b>El cifrado protege lo que puede y el límite está escrito:</b> defiende contra copiar la carpeta sin la llave, no contra alguien con acceso al servidor en marcha. El proceso no arranca sin la llave, sin valor por omisión silencioso.</li>
           <li><b>La reconciliación al arrancar encontró dos archivos huérfanos</b> preexistentes, sin registro en la base. Por política nunca borra sola: los reporta y la decisión queda en manos de una persona.</li>
         </ul>
       </div>
     </article>
 
-    <article class="proj">
-      <h3 class="proj-title">Taquería México 85</h3>
-      <p class="proj-sub">Carta digital y pedidos por código QR &middot; <b>Desarrollador y diseñador — cliente real, Montemorelos, N.L.</b> &middot; Octubre 2026</p>
+    <!-- ========== 02 · Taqueria · layout texto fijo + mosaico ========== -->
+    <article class="proyecto">
+      <div class="p-cab rev">
+        <span class="p-indice">02</span>
+        <h3>Taquería México 85</h3>
+      </div>
+      <p class="p-meta rev">
+        Carta digital y pedidos por código QR ·
+        <b>Desarrollador y diseñador, cliente real en Montemorelos, N.L.</b> ·
+        Octubre 2026 ·
+        <span class="estado pend"><i class="punto"></i>Completo en local, falta conectar la base del cliente</span>
+      </p>
 
-      <div class="block">
-        <p class="eyebrow">Contexto y problema</p>
-        <div class="prose">
-          <p>
-            El local quería que quien escanea el código QR de la mesa viera la carta completa, armara su
-            pedido y lo enviara por WhatsApp. El requisito que define el proyecto apareció al visitar el
-            lugar: <strong>adentro muchos celulares no tienen señal</strong>. Una carta que dependiera de la
-            red simplemente no se vería en el momento en que hace falta.
-          </p>
-          <p>
-            Segunda condición del negocio: sin precios en pantalla. El total lo confirma el local al
-            responder el mensaje, porque las porciones y la disponibilidad cambian.
-          </p>
+      <div class="pegado">
+        <div class="col-txt rev">
+          <h4 class="bloque">Contexto y problema</h4>
+          <div class="prosa">
+            <p>
+              El local quería que quien escanea el código QR de la mesa viera la carta completa, armara su
+              pedido y lo enviara por WhatsApp. El requisito que define el proyecto apareció al visitar el
+              lugar: <strong>adentro muchos celulares no tienen señal</strong>. Una carta que dependiera de
+              la red no se vería justo en el momento en que hace falta.
+            </p>
+            <p>
+              Segunda condición del negocio: sin precios en pantalla. El total lo confirma el local al
+              responder el mensaje, porque las porciones y la disponibilidad cambian.
+            </p>
+          </div>
+
+          <div class="sub">
+            <h4 class="bloque">Stack</h4>
+            <dl class="stack" style="grid-template-columns:1fr">
+              <div><dt>Interfaz</dt><dd><span class="chip">React 18</span><span class="chip">Vite</span><span class="chip">PWA</span><span class="chip">Service Worker</span></dd></div>
+              <div><dt>Servidor</dt><dd><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">Supabase</span><span class="chip">RLS</span><span class="chip">Vercel</span></dd></div>
+              <div><dt>Sin dependencias</dt><dd><span class="chip">Generador QR propio</span><span class="chip">OpenStreetMap</span><span class="chip">Tipografías locales</span></dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="par rev d1">
+          <figure class="ancho">
+            <div class="marco"><img src="assets/img/ruta85-hero.jpg" width="1400" height="875" alt="Portada del sitio de Taquería México 85 con el titular Aquí se come con las manos y sin prisa, junto a dos fotografías de platillos." loading="lazy"></div>
+            <figcaption><b>Portada.</b> La carta son 23 platillos en cuatro grupos. El contador del pedido vive en el encabezado y persiste en el dispositivo.</figcaption>
+          </figure>
+          <figure>
+            <div class="marco"><img src="assets/img/ruta85-noche.jpg" width="1400" height="875" alt="El mismo sitio con el tema oscuro activado." loading="lazy"></div>
+            <figcaption><b>Tema oscuro.</b> El movimiento se controla con un botón de pausa visible, no sólo con la preferencia del sistema.</figcaption>
+          </figure>
+          <figure>
+            <div class="marco"><img src="assets/img/ruta85-panel.jpg" width="1400" height="875" alt="Panel de administración mostrando los pedidos recibidos en tarjetas, con contadores de estado arriba." loading="lazy"></div>
+            <figcaption><b>Panel de administración.</b> Los pedidos entran en tarjetas con su estado. El acceso a ajustes está oculto y se abre con <code>?ajustes</code>.</figcaption>
+          </figure>
+          <figure>
+            <div class="marco"><img src="assets/img/ruta85-mapa.jpg" width="1400" height="875" alt="Pie del sitio con dirección, teléfono, Instagram y un mapa incrustado de OpenStreetMap." loading="lazy"></div>
+            <figcaption><b>Mapa incrustado.</b> OpenStreetMap, sin llave de interfaz ni cuenta. Las coordenadas se verificaron contra el polígono de la colonia.</figcaption>
+          </figure>
+          <figure>
+            <div class="marco retrato"><img src="assets/img/ruta85-movil.jpg" width="390" height="844" alt="Hoja del pedido abierta en un teléfono, con los platillos elegidos y controles de cantidad." loading="lazy"></div>
+            <figcaption><b>El escenario real.</b> Alguien escaneando el código en la mesa. Un solo botón para enviar.</figcaption>
+          </figure>
         </div>
       </div>
 
-      <div class="block">
-        <p class="eyebrow">Herramientas y tecnologías</p>
-        <dl class="ficha">
-          <dt>Interfaz</dt><dd><div class="chips"><span class="chip">React 18</span><span class="chip">Vite</span><span class="chip">PWA</span><span class="chip">Service Worker</span><span class="chip">Tema claro y oscuro</span></div></dd>
-          <dt>Servidor</dt><dd><div class="chips"><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">Supabase (Postgres)</span><span class="chip">Seguridad por fila</span><span class="chip">Despliegue sin servidor</span></div></dd>
-          <dt>Sin dependencias</dt><dd><div class="chips"><span class="chip">Generador de QR propio</span><span class="chip">OpenStreetMap</span><span class="chip">Tipografías autoalojadas</span></div></dd>
-          <dt>Estado</dt><dd><span class="estado e-pend"><i class="dot"></i>Funcionando de punta a punta en local; falta conectar la base del cliente y publicar</span></dd>
-        </dl>
-      </div>
-
-      <div class="block">
-        <p class="eyebrow">Evidencia visual</p>
-        <div class="figs">
-          <figure>
-            <div class="frame"><img src="assets/img/ruta85-hero.jpg" alt="Portada del sitio de Taquería México 85, con el titular «Aquí se come con las manos y sin prisa» y dos fotografías de platillos."></div>
-            <figcaption>Portada. La carta son 23 platillos en cuatro grupos; el contador del pedido vive en el encabezado y persiste en el dispositivo.</figcaption>
-          </figure>
-          <figure>
-            <div class="frame"><img src="assets/img/ruta85-noche.jpg" alt="El mismo sitio con el tema oscuro activado."></div>
-            <figcaption>Tema oscuro. El movimiento se controla con un botón de pausa visible, no sólo con la preferencia del sistema.</figcaption>
-          </figure>
-          <figure>
-            <div class="frame"><img src="assets/img/ruta85-panel.jpg" alt="Panel de administración del negocio mostrando los pedidos recibidos en tarjetas, con contadores de estado arriba."></div>
-            <figcaption>Panel de administración: los pedidos entran en tarjetas con su estado y sus contadores. El acceso a ajustes está oculto a propósito —se abre con <code>?ajustes</code>— y desde ahí se genera el código QR de la mesa.</figcaption>
-          </figure>
-          <figure>
-            <div class="frame"><img src="assets/img/ruta85-mapa.jpg" alt="Pie del sitio con dirección, teléfono, Instagram y un mapa incrustado de OpenStreetMap."></div>
-            <figcaption>Mapa de OpenStreetMap incrustado, sin llave de interfaz ni cuenta. Las coordenadas se verificaron contra el polígono que el propio mapa etiqueta para la colonia.</figcaption>
-          </figure>
-        </div>
-        <figure style="margin-top:22px; max-width:280px">
-          <div class="frame"><img src="assets/img/ruta85-movil.jpg" alt="Hoja del pedido abierta en un teléfono, con los platillos elegidos y controles de cantidad."></div>
-          <figcaption>La hoja del pedido en celular, que es el escenario real: alguien escaneando el código en la mesa. Un solo botón para enviar; el carrito persiste en el dispositivo.</figcaption>
-        </figure>
-      </div>
-
-      <div class="block">
-        <p class="eyebrow">Resultados e impacto</p>
+      <div class="sub rev">
+        <h4 class="bloque">Resultados e impacto</h4>
         <ul class="res">
-          <li><b>Funciona sin señal.</b> Service worker más tipografías descargadas al proyecto —subconjunto latino, unos 128 KB—. Con tipografías servidas desde internet, un celular sin datos entrando por primera vez perdía todos los títulos.</li>
-          <li><b>Generador de códigos QR escrito a mano</b> (modo byte, nivel M, versiones 1 a 10), sin librerías, para no depender de internet. <b>Verificado contra una implementación independiente: matriz idéntica en las versiones 2, 5, 7 y 8.</b> La única diferencia es la máscara, y la nuestra elige la de menor penalización, que es lo que manda el estándar.</li>
+          <li><b>Funciona sin señal.</b> Service worker más tipografías descargadas al proyecto, subconjunto latino de <span class="cifra">unos 128 KB</span>. Con tipografías servidas desde internet, un celular sin datos entrando por primera vez perdía todos los títulos.</li>
+          <li><b>Generador de códigos QR escrito a mano</b> (modo byte, nivel M, versiones 1 a 10), sin librerías, para no depender de internet. Verificado contra una implementación independiente: <span class="cifra">matriz idéntica en las versiones 2, 5, 7 y 8</span>. La única diferencia es la máscara, y la nuestra elige la de menor penalización, que es lo que manda el estándar.</li>
           <li><b>Dos errores encontrados por las pruebas antes de desplegar:</b> Postgres rechaza cualquier valor explícito en columnas de identidad generada, y un esquema no se puede validar directo del modelo cuando uno de sus campos vive en la relación y no en la tabla.</li>
-          <li><b>12 pruebas que corren contra SQLite sin levantar Postgres</b>, usando tipos genéricos que se comportan igual en ambos motores. La suite entera corre en segundos y en cualquier máquina.</li>
-          <li><b>Lo que no se podía hacer quedó escrito, no simulado.</b> El pedido tiene que viajar en la dirección web porque así funciona el enlace de WhatsApp, y cifrarlo en el cliente es inútil: la llave viajaría con el código. Se resolvió abriendo la aplicación directamente —esquema propio en Android, enlace universal en iPhone— para que la dirección no quede a la vista en el escenario real.</li>
-          <li><b>Tres piezas quedaron reutilizables</b> fuera del proyecto: la paleta de dos temas, el componente de carta con puntos guía y el generador de QR sin dependencias.</li>
+          <li><b><span class="cifra">12 pruebas</span> que corren contra SQLite sin levantar Postgres</b>, usando tipos genéricos que se comportan igual en ambos motores. La suite entera corre en segundos y en cualquier máquina.</li>
+          <li><b>Lo que no se podía hacer quedó escrito, no simulado.</b> El pedido tiene que viajar en la dirección web porque así funciona el enlace de WhatsApp, y cifrarlo en el cliente es inútil, porque la llave viajaría con el código. Se resolvió abriendo la aplicación directamente, con esquema propio en Android y enlace universal en iPhone.</li>
         </ul>
       </div>
     </article>
 
-    <article class="proj">
-      <h3 class="proj-title">Catálogo de decants</h3>
-      <p class="proj-sub">Catálogo digital y panel de gestión para perfumería fraccionada &middot; <b>Desarrollador full-stack y diseño de producto — cliente real</b> &middot; Septiembre 2026 — actualidad</p>
+    <!-- ========== 03 · Perfumes · layout de bandas editoriales ========== -->
+    <article class="proyecto">
+      <div class="p-cab rev">
+        <span class="p-indice">03</span>
+        <h3>Catálogo de decants</h3>
+      </div>
+      <p class="p-meta rev">
+        Catálogo digital y panel de gestión para perfumería fraccionada ·
+        <b>Desarrollador full-stack y diseño de producto, cliente real</b> ·
+        Septiembre 2026 a la fecha ·
+        <span class="estado pend"><i class="punto"></i>Construido y verificado, falta dar de alta el proyecto en la nube</span>
+      </p>
 
-      <div class="block">
-        <p class="eyebrow">Contexto y problema</p>
-        <div class="prose">
-          <p>
-            El cliente vende <em>decants</em>: fracciones de 3, 5 y 10 ml envasadas a pedido desde frascos
-            originales. Manejaba 132 fragancias repartidas entre una hoja de cálculo con los precios y
-            carpetas sueltas de fotos y fichas. No tenía forma de mostrarle el inventario a un cliente, ni
-            de cambiar un precio o un stock sin pedirle a alguien que editara código.
-          </p>
-          <p>
-            La restricción interesante fue la de operación: el dueño y su empleado cargan stock desde el
-            celular, a veces sin señal. El sistema tenía que aceptar cambios sin conexión y sincronizarlos
-            después <em>sin que dos dispositivos se pisaran un ajuste</em>.
-          </p>
+      <div class="banda rev">
+        <div>
+          <h4 class="bloque">Contexto y problema</h4>
+          <div class="prosa">
+            <p>
+              El cliente vende <em>decants</em>, fracciones de 3, 5 y 10 ml envasadas a pedido desde frascos
+              originales. Manejaba 132 fragancias repartidas entre una hoja de cálculo con los precios y
+              carpetas sueltas de fotos y fichas. No tenía forma de mostrarle el inventario a un cliente, ni
+              de cambiar un precio sin pedirle a alguien que editara código.
+            </p>
+          </div>
         </div>
+        <figure>
+          <div class="marco"><img src="assets/img/perfumes-hero.jpg" width="1400" height="875" alt="Portada del catálogo de decants, con tipografía editorial y la fotografía de un frasco de Dior Sauvage Elixir." loading="lazy"></div>
+          <figcaption><b>Dirección visual</b> formal y editorial, definida a partir del análisis de tres tiendas del rubro.</figcaption>
+        </figure>
       </div>
 
-      <div class="block">
-        <p class="eyebrow">Herramientas y tecnologías</p>
-        <dl class="ficha">
-          <dt>Sitio</dt><dd><div class="chips"><span class="chip">Next.js</span><span class="chip">Exportación estática</span><span class="chip">TypeScript</span><span class="chip">React</span><span class="chip">PWA instalable</span></div></dd>
-          <dt>Datos y acceso</dt><dd><div class="chips"><span class="chip">Firestore</span><span class="chip">Firebase Storage</span><span class="chip">Acceso por enlace de correo</span><span class="chip">Cloud Functions</span><span class="chip">Reglas por rol</span></div></dd>
-          <dt>Verificación</dt><dd><div class="chips"><span class="chip">Comprobación de tipos</span><span class="chip">Análisis estático</span><span class="chip">Compilación completa</span><span class="chip">Migración con ensayo en seco</span></div></dd>
-          <dt>Estado</dt><dd><span class="estado e-pend"><i class="dot"></i>Construido y verificado; pendiente dar de alta el proyecto en la nube del cliente</span></dd>
-        </dl>
-      </div>
-
-      <div class="block">
-        <p class="eyebrow">Evidencia visual</p>
-        <div class="figs">
-          <figure>
-            <div class="frame"><img src="assets/img/perfumes-hero.jpg" alt="Portada del catálogo de decants, con tipografía editorial y la fotografía de un frasco de Dior Sauvage Elixir."></div>
-            <figcaption>Portada. Dirección visual formal y editorial —negro tinta, oro de acento, versalitas— definida a partir del análisis de tres tiendas del rubro.</figcaption>
-          </figure>
-          <figure>
-            <div class="frame"><img src="assets/img/perfumes-catalogo.jpg" alt="Cuadrícula del catálogo con fragancias de Chanel, Dior, Parfums de Marly, Tom Ford, Valentino y Xerjoff, con sus notas y precios."></div>
-            <figcaption>Catálogo real: 132 fragancias de 52 marcas, con filtro por familia olfativa, búsqueda por nota y orden. Cada tarjeta muestra tres notas y el precio de entrada.</figcaption>
-          </figure>
-          <figure>
-            <div class="frame"><img src="assets/img/perfumes-detalle.jpg" alt="Ficha de un perfume con su descripción y la pirámide olfativa separada en salida, corazón y fondo."></div>
-            <figcaption>Ficha individual con pirámide olfativa completa —salida, corazón y fondo— y selector de presentación. Son 147 páginas estáticas generadas en la compilación.</figcaption>
-          </figure>
-          <figure style="max-width:280px">
-            <div class="frame"><img src="assets/img/perfumes-movil.jpg" alt="La misma ficha de perfume vista en la pantalla de un teléfono."></div>
-            <figcaption>Vista de celular. El sitio es instalable como aplicación.</figcaption>
-          </figure>
+      <div class="banda rev">
+        <div>
+          <h4 class="bloque">La restricción que mandó</h4>
+          <div class="prosa">
+            <p>
+              El dueño y su empleado cargan stock desde el celular, a veces sin señal. El sistema tenía que
+              aceptar cambios sin conexión y sincronizarlos después <strong>sin que dos dispositivos se
+              pisaran un ajuste</strong>. De ahí sale la decisión central del modelo de datos, que está más
+              abajo en los resultados.
+            </p>
+          </div>
         </div>
+        <figure>
+          <div class="marco"><img src="assets/img/perfumes-catalogo.jpg" width="1400" height="875" alt="Cuadrícula del catálogo con fragancias de Chanel, Dior, Parfums de Marly, Tom Ford, Valentino y Xerjoff, con sus notas y precios." loading="lazy"></div>
+          <figcaption><b>132 fragancias de 52 marcas</b>, con filtro por familia olfativa, búsqueda por nota y orden.</figcaption>
+        </figure>
       </div>
 
-      <div class="block">
-        <p class="eyebrow">Resultados e impacto</p>
+      <div class="banda rev">
+        <div>
+          <h4 class="bloque">Herramientas y tecnologías</h4>
+          <dl class="stack" style="grid-template-columns:1fr">
+            <div><dt>Sitio</dt><dd><span class="chip">Next.js</span><span class="chip">Exportación estática</span><span class="chip">TypeScript</span><span class="chip">PWA</span></dd></div>
+            <div><dt>Datos y acceso</dt><dd><span class="chip">Firestore</span><span class="chip">Storage</span><span class="chip">Acceso por enlace</span><span class="chip">Cloud Functions</span><span class="chip">Reglas por rol</span></dd></div>
+          </dl>
+        </div>
+        <figure>
+          <div class="marco"><img src="assets/img/perfumes-detalle.jpg" width="1400" height="875" alt="Ficha de un perfume con su descripción y la pirámide olfativa separada en salida, corazón y fondo." loading="lazy"></div>
+          <figcaption><b>Ficha individual</b> con pirámide olfativa completa. Son 147 páginas estáticas generadas en la compilación.</figcaption>
+        </figure>
+      </div>
+
+      <div class="sub rev">
+        <h4 class="bloque">Resultados e impacto</h4>
         <ul class="res">
-          <li><b>132 fragancias de 52 marcas</b> consolidadas desde 132 fichas sueltas cruzadas contra la hoja de precios por número de fila. <b>147 páginas estáticas</b> generadas y verificadas con comprobación de tipos, análisis estático y compilación completa: todo limpio.</li>
-          <li><b>El stock se modela como libro de movimientos, no como número final.</b> Es la decisión que hace posible trabajar sin conexión: dos dispositivos que registran «salieron 3» y «salieron 2» suman cinco al sincronizar, mientras que dos que escriben un total se pisan y uno de los ajustes se pierde.</li>
-          <li><b>El control de acceso vive en las reglas del servidor</b> —Dueño ve todo, Empleado sólo stock y pedidos—, no en ocultar botones en la interfaz, que es apariencia de seguridad y no seguridad.</li>
-          <li><b>La plataforma se eligió por una razón concreta, no por costumbre:</b> el compromiso con el cliente ya incluía panel sin conexión con sincronización automática, y Firestore trae persistencia local y reintentos de fábrica. Construir eso a mano sobre otro servidor era trabajo sin ganancia.</li>
-          <li><b>Dos piezas quedaron reutilizables:</b> la cola de subida sin conexión con IndexedDB y el patrón de alta de usuarios por invitación con función de bloqueo.</li>
+          <li><b><span class="cifra">132 fragancias de 52 marcas</span></b> consolidadas desde 132 fichas sueltas cruzadas contra la hoja de precios por número de fila. <span class="cifra">147 páginas estáticas</span> generadas y verificadas con comprobación de tipos, análisis estático y compilación completa, todo limpio.</li>
+          <li><b>El stock se modela como libro de movimientos, no como número final.</b> Es la decisión que hace posible trabajar sin conexión: dos dispositivos que registran "salieron 3" y "salieron 2" suman cinco al sincronizar, mientras que dos que escriben un total se pisan y uno de los ajustes se pierde.</li>
+          <li><b>El control de acceso vive en las reglas del servidor</b>, con Dueño que ve todo y Empleado limitado a stock y pedidos. No en ocultar botones en la interfaz, que es apariencia de seguridad y no seguridad.</li>
+          <li><b>La plataforma se eligió por una razón concreta, no por costumbre.</b> El compromiso con el cliente ya incluía panel sin conexión con sincronización automática, y Firestore trae persistencia local y reintentos de fábrica. Construir eso a mano sobre otro servidor era trabajo sin ganancia.</li>
         </ul>
-        <p class="nota">
-          Las fotografías que se ven son de las marcas y están puestas para maquetar; se reemplazan por
-          fotos del stock real antes de publicar, y los datos de contacto del negocio todavía son de
-          muestra. El catálogo y los precios, en cambio, son los reales.
+        <p class="pie">
+          Las fotografías que se ven son de las marcas y están puestas para maquetar. Se reemplazan por fotos
+          del stock real antes de publicar, y los datos de contacto del negocio todavía son de muestra. El
+          catálogo y los precios, en cambio, son los reales.
         </p>
       </div>
     </article>
@@ -613,35 +711,32 @@ footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wr
   </div>
 </section>
 
-<section id="stack">
+<section id="competencias">
   <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">03</p><h2>Competencias técnicas</h2></div>
-    <dl class="ficha" style="max-width:920px">
-      <dt>Lenguajes</dt><dd><div class="chips"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">SQL</span><span class="chip">HTML y CSS</span></div></dd>
-      <dt>Interfaz</dt><dd><div class="chips"><span class="chip">React 18</span><span class="chip">Next.js</span><span class="chip">Vite</span><span class="chip">PWA y service workers</span><span class="chip">Monorepos</span><span class="chip">Accesibilidad y temas</span></div></dd>
-      <dt>Servidor</dt><dd><div class="chips"><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">Postgres</span><span class="chip">SQLite</span><span class="chip">Firestore</span><span class="chip">WebSockets</span><span class="chip">Diseño de API</span></div></dd>
-      <dt>Visión y datos</dt><dd><div class="chips"><span class="chip">OpenCV</span><span class="chip">PaddleOCR</span><span class="chip">Procesamiento de imagen</span><span class="chip">Regresión y probabilidad</span><span class="chip">Análisis de datos</span></div></dd>
-      <dt>Infraestructura</dt><dd><div class="chips"><span class="chip">Docker</span><span class="chip">Despliegue sin servidor</span><span class="chip">Redes locales y QR</span><span class="chip">TLS</span><span class="chip">Reglas de firewall</span><span class="chip">git</span></div></dd>
-      <dt>Seguridad</dt><dd><div class="chips"><span class="chip">Autenticación y sesiones</span><span class="chip">Control por roles</span><span class="chip">Cifrado en reposo</span><span class="chip">Bitácora de auditoría</span><span class="chip">Respuesta a auditorías</span></div></dd>
-      <dt>Idiomas</dt><dd>Español nativo &middot; Inglés &middot; Japonés</dd>
-    </dl>
+    <div class="titulo-sec rev"><h2>Competencias</h2></div>
+    <div class="comp rev">
+      <div><h4>Lenguajes</h4><div class="stack"><dd style="display:flex;flex-wrap:wrap;gap:6px;margin:0"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">SQL</span><span class="chip">HTML y CSS</span></dd></div></div>
+      <div><h4>Interfaz</h4><dd style="display:flex;flex-wrap:wrap;gap:6px;margin:0"><span class="chip">React 18</span><span class="chip">Next.js</span><span class="chip">Vite</span><span class="chip">PWA</span><span class="chip">Monorepos</span><span class="chip">Accesibilidad</span></dd></div>
+      <div><h4>Servidor</h4><dd style="display:flex;flex-wrap:wrap;gap:6px;margin:0"><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">Postgres</span><span class="chip">SQLite</span><span class="chip">Firestore</span><span class="chip">WebSockets</span></dd></div>
+      <div><h4>Visión y datos</h4><dd style="display:flex;flex-wrap:wrap;gap:6px;margin:0"><span class="chip">OpenCV</span><span class="chip">PaddleOCR</span><span class="chip">Procesamiento de imagen</span><span class="chip">Regresión</span><span class="chip">Probabilidad</span></dd></div>
+      <div><h4>Infraestructura</h4><dd style="display:flex;flex-wrap:wrap;gap:6px;margin:0"><span class="chip">Docker</span><span class="chip">Serverless</span><span class="chip">Redes locales</span><span class="chip">TLS</span><span class="chip">Firewall</span><span class="chip">git</span></dd></div>
+      <div><h4>Seguridad</h4><dd style="display:flex;flex-wrap:wrap;gap:6px;margin:0"><span class="chip">Autenticación</span><span class="chip">Roles</span><span class="chip">Cifrado en reposo</span><span class="chip">Auditoría</span></dd></div>
+    </div>
+    <p class="pie rev" style="margin-top:24px">Idiomas: español nativo, inglés, japonés. Formación complementaria en curso: SAP BTP, Python y SQL.</p>
   </div>
 </section>
 
 <section id="contacto">
-  <div class="wrap">
-    <div class="sec-head"><p class="eyebrow">04</p><h2>Contacto</h2></div>
-    <div class="prose">
-      <p>
-        Busco incorporarme a un equipo donde el trabajo toque visión por computadora, datos o sistemas que
-        haya que dejar funcionando de verdad. Si algo de lo que está aquí arriba se parece a lo que
-        necesitan resolver, escríbeme.
-      </p>
-    </div>
-    <div class="contact" style="margin-top:26px">
-      <a href="mailto:sergiohmhh133@gmail.com">sergiohmhh133@gmail.com</a>
-      <a href="https://www.linkedin.com/in/masao-hueda-108b583b4" target="_blank" rel="noopener">linkedin.com/in/masao-hueda</a>
-      <span>Montemorelos, Nuevo León, México</span>
+  <div class="wrap cierre">
+    <h2 class="rev">¿Tienen algo así<br>que resolver?</h2>
+    <p class="lede rev d1">
+      Busco un equipo donde el trabajo toque visión por computadora, datos o sistemas que haya que dejar
+      funcionando de verdad. Si algo de lo de arriba se parece, escribime.
+    </p>
+    <div class="acciones rev d2">
+      <a class="btn" href="mailto:sergiohmhh133@gmail.com">sergiohmhh133@gmail.com</a>
+      <a class="btn sec" href="https://www.linkedin.com/in/masao-hueda-108b583b4" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn sec" href="https://github.com/Saki1Chi" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
 </section>
@@ -650,7 +745,116 @@ footer .wrap{display:flex; justify-content:space-between; gap:18px; flex-wrap:wr
 
 <footer>
   <div class="wrap">
-    <span>Sergio Masao Herrera Hueda &middot; Universidad de Montemorelos</span>
-    <span>Portafolio profesional &middot; 2026</span>
+    <span>Sergio Masao Herrera Hueda · Universidad de Montemorelos</span>
+    <span>Montemorelos, Nuevo León, México · 2026</span>
   </div>
 </footer>
+
+<script>
+(function () {
+  var raiz = document.documentElement;
+
+  /* ---- tema ---- */
+  var temaGuardado = null;
+  try { temaGuardado = localStorage.getItem('tema'); } catch (e) {}
+  if (temaGuardado) raiz.setAttribute('data-theme', temaGuardado);
+
+  document.getElementById('btn-tema').addEventListener('click', function () {
+    var oscuroAhora = getComputedStyle(document.body).backgroundColor.indexOf('5, 5, 5') > -1
+      || raiz.getAttribute('data-theme') === 'dark';
+    var nuevo = oscuroAhora ? 'light' : 'dark';
+    raiz.setAttribute('data-theme', nuevo);
+    try { localStorage.setItem('tema', nuevo); } catch (e) {}
+  });
+
+  /* ---- movimiento ----
+     Default 'on' (criterio del vault: no arrancar en 'auto').
+     El reposo en CSS ya es el estado final, asi que apagarlo nunca esconde contenido. */
+  var mov = 'on';
+  try { mov = localStorage.getItem('movimiento') || 'on'; } catch (e) {}
+  var btnMov = document.getElementById('btn-mov');
+
+  function aplicarMovimiento(v) {
+    if (v === 'on') { raiz.classList.add('anim'); btnMov.setAttribute('aria-pressed', 'true'); btnMov.textContent = 'Movimiento'; }
+    else { raiz.classList.remove('anim'); btnMov.setAttribute('aria-pressed', 'false'); btnMov.textContent = 'Sin movimiento'; }
+  }
+  aplicarMovimiento(mov);
+
+  btnMov.addEventListener('click', function () {
+    mov = (mov === 'on') ? 'off' : 'on';
+    try { localStorage.setItem('movimiento', mov); } catch (e) {}
+    aplicarMovimiento(mov);
+    if (mov === 'on') { revelarTodo(true); } else { document.querySelectorAll('.rev').forEach(function (n) { n.classList.add('vis'); }); }
+  });
+
+  /* ---- reveal al entrar en pantalla (patron del vault) ---- */
+  var objetivos = document.querySelectorAll('.rev');
+  function revelarTodo(observando) {
+    if (!('IntersectionObserver' in window)) {
+      objetivos.forEach(function (n) { n.classList.add('vis'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    objetivos.forEach(function (n) { obs.observe(n); });
+  }
+  if (mov === 'on') { revelarTodo(); } else { objetivos.forEach(function (n) { n.classList.add('vis'); }); }
+
+  /* ---- conteo de metricas ----
+     El valor final ya esta en el HTML y se guarda antes de tocar nada.
+     requestAnimationFrame se CONGELA cuando la pestana pasa a segundo plano, asi que
+     el conteo sin red de seguridad deja numeros falsos en pantalla para siempre.
+     Red de seguridad: un temporizador y el evento de visibilidad fuerzan el valor final. */
+  var cifras = document.querySelectorAll('.met b[data-n]');
+  cifras.forEach(function (el) { el.setAttribute('data-final', el.textContent); });
+
+  function fijarFinales() {
+    cifras.forEach(function (el) { el.textContent = el.getAttribute('data-final'); });
+  }
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) fijarFinales();
+  });
+
+  var contado = false;
+  function contar() {
+    if (contado) return;
+    contado = true;
+    if (mov !== 'on' || document.hidden) { fijarFinales(); return; }
+
+    var dur = 1100;
+    cifras.forEach(function (el) {
+      var fin = parseFloat(el.getAttribute('data-n'));
+      var suf = el.getAttribute('data-suf') || '';
+      var dec = (String(el.getAttribute('data-n')).indexOf('.') > -1) ? 1 : 0;
+      var ini = performance.now();
+      function paso(t) {
+        var p = Math.min((t - ini) / dur, 1);
+        var e = 1 - Math.pow(1 - p, 3);
+        if (p >= 1) { el.textContent = el.getAttribute('data-final'); return; }
+        el.textContent = (fin * e).toFixed(dec) + suf;
+        requestAnimationFrame(paso);
+      }
+      requestAnimationFrame(paso);
+    });
+    setTimeout(fijarFinales, dur + 250);
+  }
+  if ('IntersectionObserver' in window && cifras.length) {
+    var obs2 = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) { contar(); obs2.disconnect(); } });
+    }, { threshold: 0.5 });
+    obs2.observe(cifras[0].closest('.metricas'));
+  }
+
+  /* ---- progreso de lectura, para navegadores sin scroll timeline ---- */
+  if (!CSS.supports('animation-timeline', 'scroll()')) {
+    var barra = document.querySelector('.progreso');
+    addEventListener('scroll', function () {
+      var h = document.body.scrollHeight - innerHeight;
+      barra.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+    }, { passive: true });
+  }
+})();
+</script>
